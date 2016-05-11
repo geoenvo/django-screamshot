@@ -10,9 +10,9 @@ register = template.Library()
 
 
 @register.simple_tag
-def base64capture(url, selector):
+def base64capture(url, selector, **kwargs):
     simage = StringIO()
-    casperjs_capture(simage, url, selector=selector)
+    casperjs_capture(simage, url, selector=selector, **kwargs)
     # Convert to base64
     encoded = base64.encodestring(simage.getvalue())
     return "image/png;base64," + encoded
